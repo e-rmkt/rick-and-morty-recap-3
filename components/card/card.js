@@ -1,6 +1,7 @@
 const cardContainer = document.querySelector(".card-container");
 
 export function createCharacterCard(characters) {
+  cardContainer.innerHTML = "";
   characters.forEach((character) => {
     const listItem = `
     <li class="card">
