@@ -1,6 +1,6 @@
 import { createCharacterCard } from "./components/card/card.js";
 
-//const cardContainer = document.querySelector('[data-js="card-container"]');
+const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
 );
@@ -22,18 +22,15 @@ async function fetchCharacters() {
     `https://rickandmortyapi.com/api/character?page=${page}`
   );
   const json = await response.json();
+  cardContainer.innerHTML = "";
+  const pageChange = `<span class="navigation__pagination" data-js="pagination">${page} / ${maxPage}</span>`;
+  pagination.innerHTML = pageChange;
 
   return json.results.forEach((character) => {
     createCharacterCard(character);
   });
 }
 
-function pageChange() {
-  const pageChange = `<span class="navigation__pagination" data-js="pagination">${page} / ${maxPage}</span>`;
-  pagination.innerHTML = pageChange;
-}
-
-pageChange();
 fetchCharacters();
 
 prevButton.addEventListener("click", async (event) => {
