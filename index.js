@@ -27,7 +27,8 @@ async function fetchCharacters() {
   pagination.textContent = `${page} / ${maxPage}`;
 
   return json.results.forEach((character) => {
-    createCharacterCard(character);
+    const card = createCharacterCard(character);
+    cardContainer.append(card);
   });
 }
 
