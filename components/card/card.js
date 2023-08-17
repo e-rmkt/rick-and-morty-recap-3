@@ -1,10 +1,7 @@
-const cardContainer = document.querySelector(".card-container");
-
-export function createCharacterCard(characters) {
-  cardContainer.innerHTML = "";
-  characters.forEach((character) => {
-    const listItem = `
-    <li class="card">
+export function createCharacterCard(character) {
+  const charCard = document.createElement("li");
+  charCard.classList.add("card");
+  charCard.innerHTML = `
     <div class="card__image-container">
     <img
       class="card__image"
@@ -24,8 +21,6 @@ export function createCharacterCard(characters) {
       <dd class="card__info-description">${character.episode.length}</dd>
     </dl>
   </div>
-    </li>
   `;
-    cardContainer.innerHTML += listItem;
-  });
+  return charCard;
 }
