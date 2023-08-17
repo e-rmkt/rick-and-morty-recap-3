@@ -22,7 +22,10 @@ async function fetchCharacters() {
     `https://rickandmortyapi.com/api/character?page=${page}`
   );
   const json = await response.json();
-  return json.results;
+
+  return json.results.forEach((character) => {
+    createCharacterCard(character);
+  });
 }
 
 function pageChange() {
@@ -31,8 +34,7 @@ function pageChange() {
 }
 
 pageChange();
-const characters = await fetchCharacters();
-createCharacterCard(characters);
+fetchCharacters();
 
 prevButton.addEventListener("click", async (event) => {
   if (page === 1) {
