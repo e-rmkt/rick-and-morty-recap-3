@@ -24,8 +24,7 @@ async function fetchCharacters() {
   const json = await response.json();
   cardContainer.innerHTML = "";
   maxPage = json.info.pages;
-  const pageChange = `<span class="navigation__pagination" data-js="pagination">${page} / ${maxPage}</span>`;
-  pagination.innerHTML = pageChange;
+  pagination.textContent = `${page} / ${maxPage}`;
 
   return json.results.forEach((character) => {
     createCharacterCard(character);
