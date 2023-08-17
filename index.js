@@ -33,24 +33,16 @@ async function fetchCharacters() {
 
 fetchCharacters();
 
-prevButton.addEventListener("click", async (event) => {
-  if (page === 1) {
-    event.target.disabled = true;
-  } else {
+prevButton.addEventListener("click", () => {
+  if (page > 1) {
     --page;
-    const characters = await fetchCharacters();
-    createCharacterCard(characters);
-    pageChange();
+    fetchCharacters();
   }
 });
 
-nextButton.addEventListener("click", async (event) => {
-  if (page === maxPage) {
-    event.target.disabled = true;
-  } else {
-    page++;
-    const characters = await fetchCharacters();
-    createCharacterCard(characters);
-    pageChange();
+nextButton.addEventListener("click", () => {
+  if (page < maxPage) {
+    ++page;
+    fetchCharacters();
   }
 });
